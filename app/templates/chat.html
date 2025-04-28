@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">
+  <h2 class="text-2xl font-bold text-center">Medical Lab Test Analyzer</h2>
+  <form method="POST" enctype="multipart/form-data" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Upload PDF Reports</label>
+      <input type="file" name="pdfs" multiple accept="application/pdf" class="mt-1" />
+    </div>
+    <div>
+      <label for="query" class="block text-sm font-medium text-gray-700">Your Question</label>
+      <textarea name="query" id="query" rows="3" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+    </div>
+    <div>
+      <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">Analyze</button>
+    </div>
+  </form>
+
+  {% if answer_html %}
+    <div class="bg-gray-50 p-4 rounded prose max-w-none">
+        <h3 class="text-xl font-semibold mb-2">Analysis</h3>
+        <div>{{ answer_html|safe }}</div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

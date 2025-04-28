@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    container_name: nada-ai  
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - ./instance:/app/instance   # persist your SQLite DB
+    restart: unless-stopped
+    networks:
+      - caddy-network
+
+networks:
+  caddy-network:
+    external: true
